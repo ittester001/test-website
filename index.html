@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>หมวดสินค้าเหล็กก่อสร้าง</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#121b2f;
+      --text:#e9eefc;
+      --muted:#a9b4d6;
+      --accent:#6ea8ff;
+      --accent2:#6bffcf;
+      --border:rgba(255,255,255,.10);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(110,168,255,.25), transparent 60%),
+        radial-gradient(900px 500px at 80% 10%, rgba(107,255,207,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1100px; margin:0 auto; padding:22px}
+    header{
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.70);
+      border-bottom:1px solid var(--border);
+      z-index:10;
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap}
+    .brand{display:flex; gap:10px; align-items:center; font-weight:800}
+    .dot{width:12px; height:12px; border-radius:999px; background:linear-gradient(135deg,var(--accent),var(--accent2))}
+    .card{
+      background: rgba(18,27,47,.84);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+    }
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:14px; margin-top:14px}
+    @media (max-width:920px){ .hero{grid-template-columns:1fr} }
+    h1{margin:0 0 8px; font-size:clamp(24px,3.6vw,38px)}
+    .sub{margin:0; color:var(--muted)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    input, select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(7,16,31,.55);
+      color:var(--text);
+      outline:none;
+    }
+    input:focus, select:focus{border-color: rgba(110,168,255,.55)}
+    .btn{
+      cursor:pointer;
+      border:0;
+      padding:10px 14px;
+      border-radius:12px;
+      background: linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#07101f;
+      font-weight:800;
+    }
+    .btn.secondary{
+      background: transparent;
+      border:1px solid rgba(255,255,255,.18);
+      color:var(--text);
+      font-weight:650;
+    }
+    .btn.secondary:hover{border-color:rgba(255,255,255,.28)}
+    .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin:14px 0 30px}
+    @media (max-width:920px){ .grid{grid-template-columns:1fr} }
+    .tag{
+      display:inline-flex; gap:8px; align-items:center;
+      color:var(--muted);
+      border:1px solid var(--border);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+    }
+    .cat-head{display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:10px}
+    .cat-title{font-size:18px; font-weight:900; margin:0}
+    .cat-desc{margin:6px 0 0; color:var(--muted); font-size:14px}
+    .items{display:flex; flex-direction:column; gap:8px; margin-top:10px}
+    .item{
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background: rgba(7,16,31,.30);
+    }
+    .item .name{font-weight:850; margin:0 0 2px}
+    .item .use{margin:0; color:var(--muted); font-size:13px}
+    .pill{
+      padding:8px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill b{color:var(--text)}
+    .small{font-size:13px; color:var(--muted)}
+    footer{
+      border-top:1px solid var(--border);
+      padding:16px 0 28px;
+      color:var(--muted);
+    }
+    .toast{
+      position:fixed;
+      right:18px; bottom:18px;
+      padding:12px 14px;
+      border-radius:14px;
+      background: rgba(18,27,47,.92);
+      border:1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      transform: translateY(16px);
+      opacity:0;
+      pointer-events:none;
+      transition: .25s ease;
+      max-width:min(420px, calc(100vw - 36px));
+      z-index:9998;
+    }
+    .toast.show{transform: translateY(0); opacity:1;}
+    .muted{color:var(--muted)}
+    .count{font-weight:900}
+
+    /* LINE Floating Button */
+    .line-fab{
+      position:fixed;
+      right:18px;
+      bottom:86px;
+      z-index:9997;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      background:#00c300;
+      color:#fff;
+      font-weight:900;
+      box-shadow: 0 14px 34px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.12);
+      cursor:pointer;
+      user-select:none;
+    }
+    .line-fab:hover{filter:brightness(1.05)}
+    .line-fab .icon{
+      width:34px; height:34px;
+      display:grid; place-items:center;
+      background:rgba(255,255,255,.14);
+      border-radius:999px;
+      font-size:18px;
+    }
+    @media (max-width:520px){
+      .line-fab .text{display:none;}
+      .line-fab{padding:12px; bottom:82px;}
+    }
+
+    /* LINE Popup (QR) */
+    #lineModalBackdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:18px;
+    }
+    #lineModal{
+      width:min(520px, 100%);
+      background: rgba(18,27,47,.95);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:18px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.45);
+      padding:16px;
+    }
+    #lineModal .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+    }
+    #lineModal .title{
+      font-weight:900;
+      font-size:18px;
+      margin:0;
+    }
+    #lineModal .desc{
+      color:rgba(233,238,252,.75);
+      font-size:14px;
+      margin:6px 0 0;
+    }
+    #lineModal .close{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.18);
+      background:transparent;
+      color:#e9eefc;
+      border-radius:12px;
+      padding:8px 10px;
+      font-weight:800;
+    }
+    #lineModal .qrWrap{
+      margin-top:14px;
+      display:grid;
+      place-items:center;
+      padding:14px;
+      border-radius:16px;
+      background: rgba(7,16,31,.35);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    #lineModal .qr{
+      width:min(340px, 100%);
+      height:auto;
+      display:block;
+      border-radius:12px;
+      background:#fff;
+      padding:10px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>หมวดสินค้าเหล็กก่อสร้าง</span>
+    </div>
+    <div class="row">
+      <span class="pill">🔎 ค้นหา: <b>ชื่อสินค้า</b> หรือ <b>การใช้งาน</b></span>
+      <span class="pill">🏗️ โครงสร้างชัด: <b>หมวดใหญ่ → สินค้าย่อย</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="card">
+      <h1>แคตตาล็อกเหล็กแบบอ่านง่าย 😄</h1>
+      <p class="sub">เหมาะทำหน้าเว็บ/โพสต์/โบรชัวร์ — ลูกค้าหาของไว คุณปิดงานไวกว่าเดิม ✅</p>
+
+      <div style="height:12px"></div>
+      <div class="row">
+        <div style="flex:2; min-width:240px;">
+          <label class="small" for="q">ค้นหา</label>
+          <input id="q" placeholder='เช่น "ข้ออ้อย" "พื้น" "หลังคา" "ท่อ"'>
+        </div>
+        <div style="flex:1; min-width:220px;">
+          <label class="small" for="cat">เลือกหมวด</label>
+          <select id="cat"></select>
+        </div>
+        <div style="padding-top:22px;">
+          <button class="btn secondary" id="clearBtn">ล้าง</button>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+      <div class="row">
+        <span class="tag">⚡ เปิดไว</span>
+        <span class="tag">🧩 แยกหมวดชัด</span>
+        <span class="tag">🧠 ค้นหาได้</span>
+        <span class="tag">📦 เอาไปต่อยอดได้</span>
+      </div>
+      <p class="small" style="margin:12px 0 0;">
+        แสดงผลทั้งหมด: <span class="count" id="count"></span> หมวด
+      </p>
+    </div>
+
+    <aside class="card">
+      <p style="margin:0; font-weight:900; font-size:18px;">ทริคขายเร็ว 🚀</p>
+      <p class="sub" style="margin-top:6px;">
+        ในแต่ละสินค้าให้ใส่ “ใช้กับงานอะไร” 1 บรรทัด ลูกค้าจะตัดสินใจเร็วขึ้น (และคุณไม่ต้องพิมพ์ซ้ำจนเมื่อยนิ้ว 😆)
+      </p>
+      <div style="height:10px"></div>
+      <button class="btn" id="copyHintBtn">คัดลอกข้อความทักลูกค้า</button>
+      <p class="small" style="margin-top:10px;">
+        ตัวอย่าง: “แจ้งงานใช้กับเสา/คาน/พื้น + ขนาด/ความยาว/จำนวน เดี๋ยวผมเช็คราคาให้ไวๆ ✅”
+      </p>
+    </aside>
+  </section>
+
+  <section id="catalog" class="grid"></section>
+
+  <footer>
+    <div class="small">© <span id="year"></span> | โครงหน้าเว็บหมวดเหล็กก่อสร้าง</div>
+  </footer>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<!-- LINE Floating Button -->
+<div class="line-fab" id="lineFab" title="แอดไลน์">
+  <span class="icon">💬</span>
+  <span class="text">แอด LINE</span>
+</div>
+
+<!-- LINE Popup (QR) -->
+<div id="lineModalBackdrop" aria-hidden="true">
+  <div id="lineModal" role="dialog" aria-modal="true" aria-label="LINE modal">
+    <div class="top">
+      <div>
+        <p class="title">สแกน QR แอดไลน์ เพื่อเช็คราคา ✅</p>
+    </div>
+      <button class="close" id="closeLineModal" aria-label="close">ปิด</button>
+    </div>
+
+    <div class="qrWrap">
+      <!-- วางไฟล์ QR นี้ไว้โฟลเดอร์เดียวกับ index.html -->
+      <img class="qr" src="S_gainfriends_2dbarcodes_BW.png" alt="LINE QR Code">
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---------------------------
+  // DATA: หมวดใหญ่ -> สินค้าย่อย
+  // ---------------------------
+  const CATALOG = [
+    {
+      id: "rebar",
+      icon: "🧱",
+      title: "เหล็กเสริมคอนกรีต (Reinforcement)",
+      desc: "ใช้กับ เสา คาน พื้น ฐานราก ช่วยรับแรงดึงและลดการแตกร้าว",
+      items: [
+        { name: "เหล็กเส้นกลม (RB)", use: "งานปลอก งานทั่วไป งานเบา" },
+        { name: "เหล็กข้ออ้อย (DB)", use: "โครงสร้างหลัก เสา/คาน รับแรงดึงดี" },
+        { name: "ตะแกรงไวร์เมช (Wire Mesh)", use: "ปูพื้น พื้นโรงงาน ถนน ลดรอยร้าว" },
+        { name: "ลวดผูกเหล็ก (Binding Wire)", use: "ผูกเหล็กก่อนเทคอนกรีต" },
+        { name: "เดือยเหล็ก / เหล็กเสียบ (Dowel Bar)", use: "งานรอยต่อพื้น/ถนน ช่วยถ่ายแรง" }
+      ]
+    },
+    {
+      id: "structural",
+      icon: "🏗️",
+      title: "เหล็กรูปพรรณโครงสร้าง (Structural Steel)",
+      desc: "ใช้ทำโครงอาคาร โกดัง โรงงาน โครงหลังคา งานรับน้ำหนัก",
+      items: [
+        { name: "H-Beam", use: "เสา/คานหนัก โครงสร้างหลัก" },
+        { name: "I-Beam", use: "คานรับน้ำหนัก งานโครงสร้าง" },
+        { name: "C-Channel / C-Purlin", use: "แปหลังคา โครงเบา งานประกอบ" },
+        { name: "เหล็กฉาก (Angle Bar)", use: "งานยึด งานเฟรม โครงทั่วไป" },
+        { name: "เหล็กแบน (Flat Bar)", use: "ทำเพลท เสริมโครง ทำขายึด" },
+        { name: "เหล็กตัวที (T-Bar)", use: "งานโครง/งานประกอบบางประเภท" },
+        { name: "เหล็กรางน้ำ (U-Channel)", use: "งานประกอบ ทำเฟรม/ค้ำยัน" }
+      ]
+    },
+    {
+      id: "pipes",
+      icon: "🧰",
+      title: "เหล็กท่อ (Pipes & Tubes)",
+      desc: "ใช้กับโครง รั้ว เฟอร์นิเจอร์ งานระบบ และงานประกอบ",
+      items: [
+        { name: "ท่อดำ (Black Steel Pipe)", use: "งานโครง งานระบบบางประเภท" },
+        { name: "ท่อชุบกัลวาไนซ์ (GI Pipe)", use: "ทนน้ำ/ความชื้น งานรั้ว งานระบบ" },
+        { name: "ท่อเหลี่ยม / แป๊บเหลี่ยม", use: "โครงประตู รั้ว เฟรม งานเหล็กดัด" },
+        { name: "ท่อกลม / แป๊บกลม", use: "ราวบันได งานตกแต่ง โครงทั่วไป" },
+        { name: "ท่ออุตสาหกรรมตามมาตรฐาน", use: "ใช้ตามสเปกหน้างาน/มาตรฐานที่กำหนด" }
+      ]
+    },
+    {
+      id: "plates",
+      icon: "📄",
+      title: "เหล็กแผ่น (Plates & Sheets)",
+      desc: "ใช้ทำเพลท พื้น ทางเดิน งานเชื่อมประกอบ และงานหลังคา/ผนัง",
+      items: [
+        { name: "เหล็กแผ่นดำ (Hot Rolled Plate/Sheet)", use: "งานเชื่อม งานโครง ทำเพลท" },
+        { name: "เหล็กแผ่นลายกันลื่น (Checkered Plate)", use: "พื้นบันได ทางเดิน พื้นรถบรรทุก" },
+        { name: "เหล็กแผ่นชุบสังกะสี (Galvanized Sheet)", use: "กันสนิม งานภายนอก" },
+        { name: "เหล็กแผ่นรีดเย็น (Cold Rolled Sheet)", use: "งานขึ้นรูป ต้องการผิวเรียบ" },
+        { name: "เมทัลชีท (Metal Sheet)", use: "หลังคา/ผนัง โกดัง โรงงาน" }
+      ]
+    },
+    {
+      id: "wire",
+      icon: "🧵",
+      title: "เหล็กลวด/ตาข่าย (Wire Rod & Wire Products)",
+      desc: "สายวัตถุดิบงานลวด ตาข่าย ตะปู งานรั้ว และงานผูก",
+      items: [
+        { name: "เหล็กลวด (Wire Rod)", use: "วัตถุดิบทำลวด/ตาข่าย/ตะปู" },
+        { name: "ลวดเหล็กดำ / ลวดชุบ", use: "งานผูก งานอุตสาหกรรม" },
+        { name: "ตาข่ายถัก (Chain Link / Woven Wire)", use: "รั้ว กรง งานกันตก" },
+        { name: "ตะปูเหล็ก (Nails)", use: "งานไม้/งานก่อสร้างทั่วไป" }
+      ]
+    },
+    {
+      id: "accessories",
+      icon: "🔩",
+      title: "อุปกรณ์งานเหล็ก (Accessories)",
+      desc: "ของประกอบที่ช่วยให้หน้างานเร็วขึ้น และปิดจ๊อบได้เนียนๆ",
+      items: [
+        { name: "เพลท / กัสเซ็ทเพลท", use: "งานเชื่อมต่อโครงสร้าง จุดรับแรง" },
+        { name: "เหล็กเกลียว (Threaded Rod)", use: "แขวน/ยึด/งานติดตั้ง" },
+        { name: "น็อต-สกรู-แหวน (Bolts & Nuts)", use: "ยึดประกอบโครง" },
+        { name: "พุกเหล็ก / Chemical Anchor", use: "ยึดคอนกรีต งานติดตั้งหนัก" },
+        { name: "ลวดเชื่อม / ลวด CO2", use: "งานเชื่อมประกอบ" },
+        { name: "สีรองพื้นกันสนิม / สีทับหน้า", use: "กันสนิม ยืดอายุงาน" }
+      ]
+    },
+    {
+      id: "materials",
+      icon: "🧱",
+      title: "วัสดุก่อสร้างอื่นๆ (Cross-sell)",
+      desc: "ของที่ลูกค้ามักซื้อคู่กับเหล็ก เพิ่มมูลค่าบิลแบบสุภาพ 😄",
+      items: [
+        { name: "ปูนซีเมนต์ / ปูนสำเร็จรูป", use: "งานเท งานฉาบ งานก่อ" },
+        { name: "หิน-ทราย", use: "งานเทคอนกรีตและงานถม" },
+        { name: "อิฐบล็อก / อิฐมวลเบา", use: "งานก่อผนัง" },
+        { name: "สกรูปลายสว่าน / ตะปูคอนกรีต", use: "ยึดเมทัลชีท/งานติดตั้ง" },
+        { name: "ฉนวน / อุปกรณ์หลังคา", use: "ลดร้อน กันเสียง จบงานหลังคา" }
+      ]
+    }
+  ];
+
+  // ---------------------------
+  // UI
+  // ---------------------------
+  const elCatalog = document.getElementById("catalog");
+  const elQ = document.getElementById("q");
+  const elCat = document.getElementById("cat");
+  const elCount = document.getElementById("count");
+  const clearBtn = document.getElementById("clearBtn");
+  const copyHintBtn = document.getElementById("copyHintBtn");
+  const toast = document.getElementById("toast");
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(()=>toast.classList.remove("show"), 2200);
+  }
+
+  function normalize(s){ return (s || "").toLowerCase().trim(); }
+
+  function renderCategoryOptions(){
+    const options = [
+      { value: "all", label: "ทั้งหมด" },
+      ...CATALOG.map(c => ({ value: c.id, label: `${c.icon} ${c.title}` }))
+    ];
+    elCat.innerHTML = options.map(o => `<option value="${o.value}">${o.label}</option>`).join("");
+  }
+
+  function matchItem(q, item){
+    if(!q) return true;
+    const hay = normalize(item.name + " " + item.use);
+    return hay.includes(q);
+  }
+
+  function matchCategory(q, cat){
+    if(!q) return true;
+    const hay = normalize(cat.title + " " + cat.desc);
+    return hay.includes(q) || cat.items.some(it => matchItem(q, it));
+  }
+
+  function render(){
+    const q = normalize(elQ.value);
+    const selected = elCat.value;
+
+    const filtered = CATALOG
+      .filter(cat => selected === "all" ? true : cat.id === selected)
+      .map(cat => {
+        const items = q ? cat.items.filter(it => matchItem(q, it)) : cat.items;
+        return { ...cat, items };
+      })
+      .filter(cat => {
+        if(!q) return true;
+        return matchCategory(q, cat) && cat.items.length > 0;
+      });
+
+    elCount.textContent = filtered.length;
+
+    elCatalog.innerHTML = filtered.map(cat => {
+      const itemsHtml = cat.items.map(it => `
+        <div class="item">
+          <p class="name">${it.name}</p>
+          <p class="use">${it.use}</p>
+        </div>
+      `).join("");
+
+      return `
+        <section class="card">
+          <div class="cat-head">
+            <div>
+              <p class="cat-title">${cat.icon} ${cat.title}</p>
+              <p class="cat-desc">${cat.desc}</p>
+            </div>
+          </div>
+          <div class="items">${itemsHtml || `<p class="muted">ไม่พบสินค้าย่อยที่ตรงคำค้นหา</p>`}</div>
+        </section>
+      `;
+    }).join("");
+
+    if(filtered.length === 0){
+      elCatalog.innerHTML = `
+        <section class="card">
+          <p style="margin:0; font-weight:900;">ไม่พบข้อมูล 🥲</p>
+          <p class="sub">ลองค้นหาคำอื่น เช่น “ท่อ” “พื้น” “หลังคา” “กันลื่น”</p>
+        </section>
+      `;
+    }
+  }
+
+  elQ.addEventListener("input", render);
+  elCat.addEventListener("change", render);
+  clearBtn.addEventListener("click", () => {
+    elQ.value = "";
+    elCat.value = "all";
+    render();
+    showToast("ล้างตัวกรองแล้ว ✅");
+  });
+
+  copyHintBtn.addEventListener("click", async () => {
+    const text = "แจ้งงานใช้กับเสา/คาน/พื้น หรือหลังคา + ขนาด/ความยาว/จำนวน + จังหวัดส่ง เดี๋ยวผมเช็คราคาให้ไวๆ ✅";
+    try{
+      await navigator.clipboard.writeText(text);
+      showToast("คัดลอกข้อความทักลูกค้าแล้ว 📋✅");
+    }catch(e){
+      showToast("คัดลอกไม่ได้ ลองก็อปเองได้เลย 😅");
+    }
+  });
+
+  document.getElementById("year").textContent = String(new Date().getFullYear());
+  renderCategoryOptions();
+  render();
+
+  // ---------------------------
+  // LINE Floating + Popup (QR)
+  // ---------------------------
+  const lineFab = document.getElementById("lineFab");
+  const lineBackdrop = document.getElementById("lineModalBackdrop");
+  const closeLineModal = document.getElementById("closeLineModal");
+
+  function openLineModal(){
+    lineBackdrop.style.display = "flex";
+    lineBackdrop.setAttribute("aria-hidden", "false");
+  }
+  function hideLineModal(){
+    lineBackdrop.style.display = "none";
+    lineBackdrop.setAttribute("aria-hidden", "true");
+  }
+
+  lineFab.addEventListener("click", openLineModal);
+  closeLineModal.addEventListener("click", hideLineModal);
+  lineBackdrop.addEventListener("click", (e) => {
+    if(e.target === lineBackdrop) hideLineModal();
+  });
+</script>
+</body>
+</html>
