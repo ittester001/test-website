@@ -1,0 +1,21 @@
+const lineFab = document.getElementById("lineFab");
+const lineBackdrop = document.getElementById("lineModalBackdrop");
+const closeLineModal = document.getElementById("closeLineModal");
+
+function openLineModal(){
+  lineBackdrop.style.display = "flex";
+  lineBackdrop.setAttribute("aria-hidden", "false");
+}
+function hideLineModal(){
+  lineBackdrop.style.display = "none";
+  lineBackdrop.setAttribute("aria-hidden", "true");
+}
+
+lineFab?.addEventListener("click", openLineModal);
+closeLineModal?.addEventListener("click", hideLineModal);
+lineBackdrop?.addEventListener("click", (e) => {
+  if(e.target === lineBackdrop) hideLineModal();
+});
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") hideLineModal();
+});

@@ -1,0 +1,52 @@
+<!doctype html><html lang="th"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Contact | Steel Catalog</title>
+<link rel="stylesheet" href="./app.css">
+</head><body>
+<header><div class="container navbar">
+  <div class="brand"><span class="dot"></span><span>Steel Catalog</span></div>
+  <nav class="menu">
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./products.html">Products</a>
+    <a class="active" href="./contact.html">Contact</a>
+    <a href="./map.html">Map</a>
+  </nav>
+</div></header>
+
+<main class="container">
+  <section class="card">
+    <h2>Contact</h2>
+    <p class="sub">ฟอร์มนี้เป็นตัวอย่าง (ถ้าจะให้ส่งจริง เดี๋ยวทำให้ต่อได้)</p>
+
+    <div style="height:12px"></div>
+    <div class="row">
+      <div style="flex:1; min-width:240px;"><label class="small">ชื่อ</label><input placeholder="ชื่อผู้ติดต่อ"></div>
+      <div style="flex:1; min-width:240px;"><label class="small">เบอร์</label><input placeholder="เบอร์โทร"></div>
+    </div>
+
+    <div style="height:10px"></div>
+    <label class="small">รายละเอียด</label>
+    <textarea placeholder="งาน + ขนาด/ยาว/จำนวน + จังหวัดส่ง"></textarea>
+
+    <div style="height:10px"></div>
+    <button class="btn" type="button" onclick="alert('ฟอร์มตัวอย่างครับ 🙂 ลูกค้าทักไลน์จะเร็วกว่า')">ส่ง</button>
+  </section>
+
+  <footer class="small">© <span id="year"></span></footer>
+</main>
+
+<div class="toast" id="toast"></div>
+<div class="line-fab" id="lineFab"><span class="icon">💬</span><span class="text">แอด LINE</span></div>
+<div id="lineModalBackdrop" aria-hidden="true">
+  <div id="lineModal">
+    <div class="top">
+      <div><p class="title">สแกน QR แอดไลน์ ✅</p><p class="desc">เช็คราคาไว</p></div>
+      <button class="close" id="closeLineModal">ปิด</button>
+    </div>
+    <div class="qrWrap"><img class="qr" src="./S_gainfriends_2dbarcodes_BW.png" alt="LINE QR Code"></div>
+  </div>
+</div>
+
+<script src="./shared.js"></script>
+</body></html>

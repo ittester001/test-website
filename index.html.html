@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | หมวดสินค้าเหล็กก่อสร้าง</title>
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+<header>
+  <div class="container navbar">
+    <div class="brand"><span class="dot"></span><span>Steel Catalog</span></div>
+    <nav class="menu">
+      <a class="active" href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./products.html">Products</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./map.html">Map</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="card">
+      <h1 style="margin:0 0 8px; font-size:clamp(24px,3.6vw,38px)">เว็บทดลองขายเหล็ก แบบดูโปร 😄</h1>
+      <p class="sub">กดเข้า Products เพื่อดูหมวดเหล็ก แยกชัด ค้นหาได้</p>
+      <div style="height:14px"></div>
+      <a class="btn" href="./products.html">ไปหน้า Products</a>
+      <a class="btn secondary" style="margin-left:8px" href="./contact.html">ติดต่อเรา</a>
+      <p class="small" style="margin-top:12px">ทริค: ส่งลิงก์หน้า Products ให้ลูกค้า = ดูของเองก่อน คุณค่อยปิดดีล 👌</p>
+    </div>
+
+    <aside class="card">
+      <p style="margin:0; font-weight:900; font-size:18px;">พร้อมเช็คราคาไว ⚡</p>
+      <p class="sub" style="margin-top:6px;">กดปุ่ม LINE มุมขวาล่างเพื่อแอดไลน์</p>
+    </aside>
+  </section>
+
+  <footer class="small" style="margin-top:16px; border-top:1px solid rgba(255,255,255,.10); padding-top:16px;">
+    © <span id="year"></span> | Steel Catalog
+  </footer>
+</main>
+
+<!-- Toast (เผื่อใช้) -->
+<div class="toast" id="toast"></div>
+
+<!-- LINE FAB + MODAL (QR only) -->
+<div class="line-fab" id="lineFab" title="แอดไลน์">
+  <span class="icon">💬</span>
+  <span class="text">แอด LINE</span>
+</div>
+
+<div id="lineModalBackdrop" aria-hidden="true">
+  <div id="lineModal" role="dialog" aria-modal="true" aria-label="LINE modal">
+    <div class="top">
+      <div>
+        <p class="title">สแกน QR เพื่อแอดไลน์ 📲</p>
+        <p class="desc">ส่ง “งาน + ขนาด + จำนวน + จังหวัดส่ง” เดี๋ยวเช็คราคาให้ไว ✅</p>
+      </div>
+      <button class="close" id="closeLineModal" aria-label="close">ปิด</button>
+    </div>
+    <div class="qrWrap">
+      <img class="qr" src="./S_gainfriends_2dbarcodes_BW.png" alt="LINE QR Code">
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("year").textContent = String(new Date().getFullYear());
+</script>
+<script src="./shared-line.js"></script>
+</body>
+</html>

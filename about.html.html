@@ -1,0 +1,43 @@
+<!doctype html><html lang="th"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>About | Steel Catalog</title>
+<link rel="stylesheet" href="./app.css">
+</head><body>
+<header><div class="container navbar">
+  <div class="brand"><span class="dot"></span><span>Steel Catalog</span></div>
+  <nav class="menu">
+    <a href="./index.html">Home</a>
+    <a class="active" href="./about.html">About</a>
+    <a href="./products.html">Products</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./map.html">Map</a>
+  </nav>
+</div></header>
+
+<main class="container">
+  <section class="card">
+    <h2>About</h2>
+    <p class="sub">ใส่คำแนะนำบริษัท/จุดเด่น/เงื่อนไขขายตรงนี้ได้เลย</p>
+    <ul class="small" style="margin:10px 0 0; padding-left:18px">
+      <li>ให้คำแนะนำตามหน้างานจริง</li>
+      <li>เทียบสเปก/เทียบราคาให้ก่อนตัดสินใจ</li>
+      <li>คุยไว ชัดเจน ลดงานปวดหัว</li>
+    </ul>
+  </section>
+  <footer class="small">© <span id="year"></span></footer>
+</main>
+
+<div class="toast" id="toast"></div>
+<div class="line-fab" id="lineFab"><span class="icon">💬</span><span class="text">แอด LINE</span></div>
+<div id="lineModalBackdrop" aria-hidden="true">
+  <div id="lineModal">
+    <div class="top">
+      <div><p class="title">สแกน QR แอดไลน์ ✅</p><p class="desc">เช็คราคาไว</p></div>
+      <button class="close" id="closeLineModal">ปิด</button>
+    </div>
+    <div class="qrWrap"><img class="qr" src="./S_gainfriends_2dbarcodes_BW.png" alt="LINE QR Code"></div>
+  </div>
+</div>
+
+<script src="./shared.js"></script>
+</body></html>
