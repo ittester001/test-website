@@ -224,35 +224,6 @@
       background:#fff;
       padding:10px;
     }
-    #lineModal .hint{
-      margin-top:10px;
-      color:rgba(233,238,252,.75);
-      font-size:13px;
-      text-align:center;
-    }
-    #lineModal .linkbox{
-      margin-top:10px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      color:rgba(233,238,252,.70);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:14px;
-      padding:10px 12px;
-      background: rgba(7,16,31,.35);
-      font-size:13px;
-    }
-    #lineModal .copy{
-      cursor:pointer;
-      border:1px solid rgba(255,255,255,.18);
-      background:transparent;
-      color:#e9eefc;
-      border-radius:12px;
-      padding:8px 10px;
-      font-weight:800;
-    }
   </style>
 </head>
 <body>
@@ -335,21 +306,14 @@
   <div id="lineModal" role="dialog" aria-modal="true" aria-label="LINE modal">
     <div class="top">
       <div>
-        <p class="title">สแกน QR เพื่อแอดไลน์ 📲</p>
-        <p class="desc">ส่ง “งาน + ขนาด + จำนวน + จังหวัดส่ง” เดี๋ยวเช็คราคาให้ไว ✅</p>
-      </div>
+        <p class="title">สแกน QR แอดไลน์ เพื่อเช็คราคา ✅</p>
+    </div>
       <button class="close" id="closeLineModal" aria-label="close">ปิด</button>
     </div>
 
     <div class="qrWrap">
       <!-- วางไฟล์ QR นี้ไว้โฟลเดอร์เดียวกับ index.html -->
-      <img class="qr" src="L_gainfriends_2dbarcodes_BW.png" alt="LINE QR Code">
-      <div class="hint">หรือกดลิงก์: <a href="https://lin.ee/xjfAvkP" target="_blank" rel="noopener" style="color:#e9eefc;font-weight:900;">lin.ee/xjfAvkP</a></div>
-    </div>
-
-    <div class="linkbox">
-      <span>คัดลอกลิงก์ไว้ส่งให้ลูกค้า</span>
-      <button class="copy" id="copyLineLink">คัดลอกลิงก์</button>
+      <img class="qr" src="S_gainfriends_2dbarcodes_BW.png" alt="LINE QR Code">
     </div>
   </div>
 </div>
@@ -568,11 +532,9 @@
   // ---------------------------
   // LINE Floating + Popup (QR)
   // ---------------------------
-  const LINE_LINK = "https://lin.ee/xjfAvkP";
   const lineFab = document.getElementById("lineFab");
   const lineBackdrop = document.getElementById("lineModalBackdrop");
   const closeLineModal = document.getElementById("closeLineModal");
-  const copyLineLink = document.getElementById("copyLineLink");
 
   function openLineModal(){
     lineBackdrop.style.display = "flex";
@@ -587,15 +549,6 @@
   closeLineModal.addEventListener("click", hideLineModal);
   lineBackdrop.addEventListener("click", (e) => {
     if(e.target === lineBackdrop) hideLineModal();
-  });
-
-  copyLineLink.addEventListener("click", async () => {
-    try{
-      await navigator.clipboard.writeText(LINE_LINK);
-      showToast("คัดลอกลิงก์ไลน์แล้ว 📋✅");
-    }catch(e){
-      showToast("คัดลอกไม่ได้ ลองก็อปเองได้เลย 😅");
-    }
   });
 </script>
 </body>
