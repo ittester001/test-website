@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>บริการส่งด่วน | Best Deal Hub</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="section">
+    <div class="container">
+      <div class="card p28">
+        <h2 class="h2">บริการส่งด่วน ⚡</h2>
+        <p class="lead">
+          เหมาะกับงานเร่งด่วนที่ “ของต้องมา พรุ่งนี้!” (แต่ใจเย็นนิดนึงนะพี่ 😂)  
+          ใส่เงื่อนไขจริงของคุณตรงนี้ได้เลย
+        </p>
+
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap:16px">
+          <div class="card p22">
+            <b>เงื่อนไขตัวอย่าง</b>
+            <div class="small" style="margin-top:8px; line-height:1.9">
+              • สั่งและชำระเงินก่อน 12:00 น.<br/>
+              • จัดส่งวันถัดไป (เฉพาะบางพื้นที่)<br/>
+              • เฉพาะรายการที่ร่วมโปรแกรม
+            </div>
+          </div>
+          <div class="card p22">
+            <b>สิ่งที่ต้องแจ้ง</b>
+            <div class="small" style="margin-top:8px; line-height:1.9">
+              • รายการ/สเปก/จำนวน<br/>
+              • จุดส่ง + เวลารับของ<br/>
+              • วันที่ต้องใช้ (ย้ำอีกรอบกันพลาด)
+            </div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+        <div class="btns">
+          <button class="btn primary" id="btnQuoteTop">ขอใบเสนอราคา</button>
+          <a class="btn" href="contact.html">ติดต่อเรา</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <div class="fab">
+    <button class="fabbtn" id="fabLine">LINE • คุยไว ⚡</button>
+    <button class="fabbtn mini" id="fabQuote">ขอราคา</button>
+  </div>
+
+  <div class="modal" id="quoteModal" aria-hidden="true">
+    <div class="box">
+      <div class="head">
+        <b>ขอใบเสนอราคา 🧾</b>
+        <button class="btn danger" id="btnCloseModal">ปิด</button>
+      </div>
+      <div class="body">
+        <div class="small">คัดลอกแล้วไปวางใน LINE ได้เลย ✅</div>
+        <div class="hr"></div>
+        <form class="form" id="quoteForm">
+          <div class="row2">
+            <div class="field"><label>ชื่อผู้ติดต่อ</label><input name="name" /></div>
+            <div class="field"><label>เบอร์โทร</label><input name="phone" /></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label>ประเภทสินค้า</label><input name="type" /></div>
+            <div class="field"><label>จำนวน</label><input name="qty" /></div>
+          </div>
+          <div class="field"><label>ขนาด/สเปก</label><input name="spec" /></div>
+          <div class="row2">
+            <div class="field"><label>พื้นที่จัดส่ง</label><input name="area" /></div>
+            <div class="field"><label>วันที่ต้องการใช้</label><input name="date" /></div>
+          </div>
+          <div class="field"><label>รายละเอียดเพิ่มเติม</label><textarea name="note"></textarea></div>
+          <div class="btns">
+            <button class="btn primary" type="submit">คัดลอกข้อความใบขอราคา</button>
+            <button class="btn" type="button" id="btnOpenLine">เปิด LINE</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
