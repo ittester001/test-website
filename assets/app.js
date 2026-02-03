@@ -1,7 +1,7 @@
 // ====== Config ======
 const LINE_URL = "https://page.line.me/GU7ufB5K"; // <-- ใส่ลิงก์ LINE OA ของคุณ
-const PHONE = "06x-xxx-xxxx";              // <-- ใส่เบอร์คุณ
-const EMAIL = "sales@example.com";         // <-- ใส่อีเมลคุณ
+const PHONE = "02-124-5989";              // <-- ใส่เบอร์คุณ
+const EMAIL = "wam.info2025@gmail.com";         // <-- ใส่อีเมลคุณ
 
 // ====== Helpers ======
 const $ = (q, el=document) => el.querySelector(q);
@@ -192,5 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initModal();
   initFab();
 });
+
 
 
