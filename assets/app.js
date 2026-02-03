@@ -1,5 +1,5 @@
 // ====== Config ======
-const LINE_URL = "https://lin.ee/GU7ufB5K"; // <-- ใส่ลิงก์ LINE OA ของคุณ
+const LINE_URL = "https://page.line.me/GU7ufB5K"; // <-- ใส่ลิงก์ LINE OA ของคุณ
 const PHONE = "06x-xxx-xxxx";              // <-- ใส่เบอร์คุณ
 const EMAIL = "sales@example.com";         // <-- ใส่อีเมลคุณ
 
@@ -192,4 +192,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initModal();
   initFab();
 });
+
 
