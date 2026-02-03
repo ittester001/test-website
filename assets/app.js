@@ -1,5 +1,5 @@
 // ====== Config ======
-const LINE_URL = "https://lin.ee/xxxxxxxx"; // <-- ใส่ลิงก์ LINE OA ของคุณ
+const LINE_URL = "https://lin.ee/GU7ufB5K"; // <-- ใส่ลิงก์ LINE OA ของคุณ
 const PHONE = "06x-xxx-xxxx";              // <-- ใส่เบอร์คุณ
 const EMAIL = "sales@example.com";         // <-- ใส่อีเมลคุณ
 
@@ -45,7 +45,6 @@ function mountHeaderFooter(){
 
           <a href="prompt.html">บริการส่งด่วน</a>
           <a href="blog.html">บทความ</a>
-          <a href="prices.html">ราคาเหล็กประจำวัน</a>
           <a href="contact.html">ติดต่อเรา</a>
         </nav>
 
@@ -77,7 +76,6 @@ function mountHeaderFooter(){
       <a href="products.html">สินค้าทั้งหมด</a>
       <a href="prompt.html">บริการส่งด่วน</a>
       <a href="blog.html">บทความ</a>
-      <a href="prices.html">ราคาเหล็กประจำวัน</a>
       <a href="contact.html">ติดต่อเรา</a>
       <div class="hr"></div>
       <button class="btn primary" id="btnQuoteDrawer" style="width:100%">ขอใบเสนอราคา</button>
@@ -194,3 +192,4 @@ document.addEventListener("DOMContentLoaded", () => {
   initModal();
   initFab();
 });
+
