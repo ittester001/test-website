@@ -1,5 +1,6 @@
 // ====== Config ======
-const LINE_URL = "https://page.line.me/GU7ufB5K"; // <-- ใส่ลิงก์ LINE OA ของคุณ
+const LINE_ADD_URL = "https://lin.ee/GU7ufB5K";       // ลิงก์แอดเพื่อน (ดีที่สุดสำหรับแอด)
+const LINE_PROFILE_URL = "https://page.line.me/GU7ufB5K"; // หน้าโปรไฟล์ OA (ลูกค้าเห็นได้)
 const PHONE = "02-124-5989";              // <-- ใส่เบอร์คุณ
 const EMAIL = "wam.info2025@gmail.com";         // <-- ใส่อีเมลคุณ
 
@@ -153,7 +154,7 @@ function initModal(){
   modal.addEventListener("click", (e) => { if(e.target === modal) set(false); });
 
   if(btnLine){
-    btnLine.addEventListener("click", () => window.open(LINE_URL, "_blank", "noopener,noreferrer"));
+    btnLine.addEventListener("click", () => window.open(LINE_ADD_URL, "_blank", "noopener,noreferrer"));
   }
 
   if(form){
@@ -182,7 +183,9 @@ function initModal(){
 // ====== Floating buttons ======
 function initFab(){
   const lineBtn = $("#fabLine");
-  if(lineBtn) lineBtn.addEventListener("click", ()=> window.open(LINE_URL, "_blank", "noopener,noreferrer"));
+  if(lineBtn) lineBtn.addEventListener("click", ()=> 
+    window.open(LINE_PROFILE_URL, "_blank", "noopener,noreferrer")
+  );
 }
 
 // ====== Init ======
@@ -192,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initModal();
   initFab();
 });
+
 
 
 
